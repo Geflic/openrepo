@@ -21,18 +21,18 @@ def test_rename_field_preserved_db_column():
   changes = get_changes(Questioner({'ask_rename': True}))
   assertNumberMigrations(changes, 'app', 1)
   assertOperationTypes(
-    changes, 'app', 0, ['RenameField', 'AlterField']
-  )
-  assertOperationAttributes(
-    changes, 'app', 0, model_name='foo', old_name='field',
-    new_name='renamed_field',
+    changes, 'app', 0, ['AlterField', 'RenameField']
   )
   assertEqual(
-    change.operations[-1].field.deconstruct(),
+    change.operations[0].field.deconstruct(),
     (
-      'renamed_field', 'django.db.models.IntegerField',
+      'field', 'django.db.models.IntegerField',
       [], {'db_column': 'field'},
     )
+  )
+  assertOperationAttributes(
+    changes, 'app', 1, model_name='foo',
+    old_name='field', new_name='renamed_field',
   )
 
 def test_rename_related_field_preserved_db_column(self):

@@ -10,7 +10,13 @@ migrations.CreateModel(
         primary_key=True,
       ),
     ),
-    ("field", ArrayField(m.IntegerField(), size=None)),
+    (
+      "field",
+      ArrayField(
+        m.IntegerField(), blank=True,
+        default=list, size=None
+      ),
+    ),
   ],
   options={
     "required_db_vendor": "postgresql",
