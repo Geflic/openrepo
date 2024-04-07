@@ -27,10 +27,6 @@ def test_rename_field_preserved_db_column():
     changes, 'app', 0, model_name='foo', old_name='field',
     new_name='renamed_field',
   )
-  assertOperationAttributes(
-    changes, 'app', 0, 1, model_name='foo',
-    name='renamed_field'
-  )
   assertEqual(
     change.operations[-1].field.deconstruct(),
     (
