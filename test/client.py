@@ -10,7 +10,7 @@ def test():
     else:
       s = engine.Store()
       s.save()
-      cookies[settings.COOKIE_NAME] = a.key
+      cookies[settings.COOKIE_NAME] = s.key
       return s
   return {}
 
